@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -53,10 +54,17 @@ public class Sample {
 										.collect(Collectors.toList());
 		System.out.println("Numbers starts with 2:"+numWith2);
 		// Print Duplicate Numbers using Streams
-		List<Integer> dupList=Arrays.asList(1,2,3,1,2,3,4,5,7,4,7);
-		Set<Integer> onlyDep = dupList.stream()
+		List<Integer> dupList=Arrays.asList(1,2,3,1,2,3,4,5,7,4,7,6,6);
+		Set<Integer> onlyDup = dupList.stream()
 						.filter(e->Collections.frequency(dupList, e)>1)
 							.collect(Collectors.toSet());
-		System.out.println("Duplicates:"+onlyDep);
+		System.out.println("Duplicates:"+onlyDup);
+		
+		Set<Integer> hs=new HashSet<>();
+		Set<Integer> dupRes = dupList.stream()
+								.filter(e->hs.add(e))
+									.collect(Collectors.toSet());
+		System.out.println("Unique elements by removing Duplicates:"+dupRes);
+
 	}
 }
