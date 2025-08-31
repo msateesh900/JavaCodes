@@ -16,6 +16,20 @@ public class Java8Programs {
 		System.out.println("Occurances of each character from:" + str + ":is--->" + strOccurances);
 	}
 
+	public static void StringDuplicateCharactersUsingJava8Streams(String str) {
+		List<String> duplicateChars = Arrays.stream(str.split(""))
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream()
+				.filter(i -> i.getValue() > 1).map(Map.Entry::getKey).collect(Collectors.toList());
+		System.out.println("Duplicate characters from:" + str + ":" + duplicateChars);
+	}
+	
+	public static void StringUniqueCharactersUsingJava8Streams(String str) {
+		List<String> uniqueChars = Arrays.stream(str.split(""))
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream()
+				.filter(i -> i.getValue() == 1).map(Map.Entry::getKey).collect(Collectors.toList());
+		System.out.println("Unique characters from:" + str + ":" + uniqueChars);
+	}
+
 	public static void main(String[] args) {
 		/* 1.Find occurrences of each character from String using java 8 streams */
 		String str = "ilovejavatechie";
@@ -24,19 +38,10 @@ public class Java8Programs {
 		StringOccurancesUsingJava8Streams(str);
 
 		/* 2.Find duplicate characters from String using java 8 streams */
-		List<String> duplicateChars = Arrays.stream(str.split(""))
-				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream()
-				.filter(i -> i.getValue() > 1).map(Map.Entry::getKey).collect(Collectors.toList());
-
-//		System.out.println("Duplicate characters from:" + str + ":" + duplicateChars);
+		StringDuplicateCharactersUsingJava8Streams(str);
 
 		/* 3.Find unique characters from String using java 8 streams */
-
-		List<String> uniqueChars = Arrays.stream(str.split(""))
-				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream()
-				.filter(i -> i.getValue() == 1).map(Map.Entry::getKey).collect(Collectors.toList());
-
-//		System.out.println("Unique characters from:" + str + ":" + uniqueChars);
+		StringUniqueCharactersUsingJava8Streams(str);
 
 		/* 4.Find First non-repeated character from String using java 8 streams */
 		String firstNonRepeatedChar = Arrays.stream(str.split(""))
