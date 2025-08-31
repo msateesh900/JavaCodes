@@ -8,13 +8,12 @@ public class FirstNonRepeatedCharacter {
 			charCountMap.put(ch, charCountMap.getOrDefault(ch, 0) + 1);
 		System.out.println("Occurances of characters:"+charCountMap);
 		for(Map.Entry<Character, Integer> entry: charCountMap.entrySet())
-			if(entry.getValue()!=-1)
+			if(entry.getValue()==-1)
 				return entry.getKey();
-		return '\0';
+		return '\0';       
 	}
-
 	public static void main(String[] args) {
-		String input = "swiss";
+		String input = "swisskiss";
 		char result = findFirstNonRepeatedCharacter(input);
 
 		if (result != '\0') {
