@@ -104,7 +104,7 @@ public class Java8Programs {
 		/* 9.String.join in java 8 */
 		List<String> nos = Arrays.asList("1", "2", "3", "4", "5");
 		String result = String.join("-", nos);
-		System.out.println(result);
+		System.out.println("9."+result);
 
 		/* 10.skip,limit in java 8 */
 		IntStream.rangeClosed(1, 10).skip(0).limit(9).forEach(System.out::print);
