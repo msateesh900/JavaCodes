@@ -108,6 +108,15 @@ public class Java8Programs {
 
 		/* 10.skip,limit in java 8 */
 		IntStream.rangeClosed(1, 10).skip(0).limit(9).forEach(System.out::print);
+		
+		int[] numbers = { 1, 4, 5, 6, 7, 1, 4, 5, 5 };
+		String name = "sateesh";
+		Integer numOcc = Arrays.stream(numbers).boxed()
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream()
+				.max(Map.Entry.comparingByValue()).map(Map.Entry::getKey).get();
+		String strOcc = Arrays.stream(name.split(""))
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream()
+				.max(Map.Entry.comparingByValue()).map(Map.Entry::getKey).get();
 	}
 
 }
